@@ -2,12 +2,18 @@ import { motion, useReducedMotion } from 'framer-motion'
 
 const EASE = [0.22, 0.68, 0, 1]
 
-export default function PageHeader({ code, title, sub }) {
+export default function PageHeader({ code, title, sub, image, imageAlt = '' }) {
   const reduce = useReducedMotion()
   const words = title.split(' ')
 
   return (
-    <header className="phead">
+    <header className={`phead${image ? ' phead--photo' : ''}`}>
+      {image && (
+        <div className="phead__bg">
+          <img src={image} alt={imageAlt} aria-hidden={imageAlt ? undefined : 'true'} />
+        </div>
+      )}
+
       <div className="wrap phead__grid">
         <motion.p
           className="phead__code"

@@ -3,23 +3,49 @@
  * without touching component code.
  */
 
+/**
+ * PLACEHOLDER CONTACT DETAILS.
+ *
+ * Every phone number, address and registration below is a fill-in-the-blank
+ * marker, not a real one — an invented-but-plausible number would ring a
+ * stranger. Replace the values containing X or "Add ..." with your own before
+ * the site goes live. `isPlaceholder()` keeps unset values from becoming
+ * clickable links.
+ */
 export const company = {
   name: 'Hubco Spares',
   legal: 'Hubco Spares Pvt. Ltd.',
   tagline: 'Commercial vehicle & industrial spare parts',
   founded: 1978,
   city: 'Ludhiana, Punjab',
-  phone: '+91 161 402 8800',
-  whatsapp: '+91 98140 28800',
-  email: 'counter@hubcospares.example',
+  phone: '+91 XXXXX XXXXX',
+  whatsapp: '+91 XXXXX XXXXX',
+  email: 'counter@example.com',
   hours: 'Mon–Sat, 9:00–19:30 IST',
+  gstin: 'Add GSTIN',
+  address: 'Add street address, Ludhiana, Punjab',
 }
 
+/** True while a value is still an unreplaced placeholder. */
+export const isPlaceholder = (value = '') =>
+  /X{3,}|^Add\b|example\.com/i.test(value)
+
+/** Link builders that return null while the detail is still a placeholder. */
+export const telHref = (n = '') =>
+  isPlaceholder(n) ? null : `tel:${n.replace(/[^\d+]/g, '')}`
+
+export const waHref = (n = '') =>
+  isPlaceholder(n) ? null : `https://wa.me/${n.replace(/\D/g, '')}`
+
+export const mailHref = (e = '') => (isPlaceholder(e) ? null : `mailto:${e}`)
+
 export const stats = [
-  { value: 42000, suffix: '+', label: 'Part numbers stocked' },
-  { value: 6, suffix: '', label: 'Warehouses' },
-  { value: 1240, suffix: '', label: 'Workshops supplied' },
-  { value: 24, suffix: 'h', label: 'Dispatch window' },
+  { value: 42000, suffix: '+', label: 'Part numbers stocked', icon: 'sku' },
+  { value: 6, suffix: '', label: 'Warehouses', icon: 'warehouse' },
+  { value: 1240, suffix: '+', label: 'Workshops supplied', icon: 'workshop' },
+  { value: 58, suffix: '', label: 'People on the team', icon: 'people' },
+  { value: 94, suffix: '%', label: 'Same-day dispatch', icon: 'truck' },
+  { value: 46, suffix: '', label: 'Years at the counter', icon: 'clock' },
 ]
 
 export const categories = [
@@ -254,38 +280,38 @@ export const branches = [
   {
     city: 'Ludhiana',
     role: 'Head office & main warehouse',
-    address: 'Plot 44, Focal Point Phase IV, Gill Road, Ludhiana 141010',
-    tel: '+91 161 402 8800',
+    address: 'Add street address · Ludhiana, Punjab',
+    tel: '+91 XXXXX XXXXX',
   },
   {
     city: 'Delhi NCR',
     role: 'Branch warehouse',
-    address: 'B-19, Transport Nagar, Sahibabad, Ghaziabad 201005',
-    tel: '+91 120 411 6200',
+    address: 'Add street address · Ghaziabad, Uttar Pradesh',
+    tel: '+91 XXXXX XXXXX',
   },
   {
     city: 'Jaipur',
     role: 'Branch warehouse',
-    address: '212, Road No. 5, VKI Area, Jaipur 302013',
-    tel: '+91 141 405 3100',
+    address: 'Add street address · Jaipur, Rajasthan',
+    tel: '+91 XXXXX XXXXX',
   },
   {
     city: 'Nagpur',
     role: 'Regional depot',
-    address: '7, Hingna MIDC Road, Nagpur 440016',
-    tel: '+91 712 405 9700',
+    address: 'Add street address · Nagpur, Maharashtra',
+    tel: '+91 XXXXX XXXXX',
   },
   {
     city: 'Indore',
     role: 'Regional depot',
-    address: '31, Sanwer Road Industrial Area, Indore 452015',
-    tel: '+91 731 404 5500',
+    address: 'Add street address · Indore, Madhya Pradesh',
+    tel: '+91 XXXXX XXXXX',
   },
   {
     city: 'Guwahati',
     role: 'Regional depot',
-    address: '9, Betkuchi Industrial Estate, Guwahati 781035',
-    tel: '+91 361 235 8400',
+    address: 'Add street address · Guwahati, Assam',
+    tel: '+91 XXXXX XXXXX',
   },
 ]
 

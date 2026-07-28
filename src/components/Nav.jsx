@@ -6,12 +6,20 @@ import { company, navItems } from '../data/site.js'
 
 export default function Nav() {
   const [open, setOpen] = useState(false)
+  const [scrolled, setScrolled] = useState(false)
   const location = useLocation()
   const reduce = useReducedMotion()
 
   useEffect(() => {
     setOpen(false)
   }, [location.pathname])
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 24)
+    onScroll()
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
 
   useEffect(() => {
     document.body.style.overflow = open ? 'hidden' : ''
@@ -22,7 +30,7 @@ export default function Nav() {
 
   return (
     <>
-      <header className="nav">
+      <header className={`nav${scrolled || open ? ' is-scrolled' : ''}`}>
         <div className="nav__inner">
           <Link to="/" className="brand" aria-label={`${company.name} — home`}>
             <Brandmark />
@@ -62,9 +70,9 @@ export default function Nav() {
             ))}
           </nav>
 
-          <a className="btn nav__cta" href={`tel:${company.phone.replace(/\s/g, '')}`}>
-            Call the counter
-          </a>
+          <Link className="btn nav__cta" to="/contact">
+            Ask the counter
+          </Link>
 
           <button
             type="button"

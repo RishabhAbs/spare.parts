@@ -1,10 +1,12 @@
 import { motion, useReducedMotion } from 'framer-motion'
 
 import PageHeader from '../components/PageHeader.jsx'
+import Figure from '../components/Figure.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import { routing, team } from '../data/site.js'
+import { alts, img, photos } from '../data/images.js'
 
 export default function Team() {
   const reduce = useReducedMotion()
@@ -15,6 +17,7 @@ export default function Team() {
         code="05 / OUR TEAM"
         title="Fifty-eight people. Six of them decide what you get."
         sub="Most parts businesses hide behind a phone number. These are the people who actually answer it, and what each of them owns."
+        image={img(photos.mechanicEngine, 1800)}
       />
 
       <section className="section">
@@ -84,11 +87,19 @@ export default function Team() {
       </section>
 
       <section className="section section--dark">
-        <div className="wrap split">
-          <Reveal>
-            <h2 className="shead__title">Working here</h2>
-          </Reveal>
-          <Reveal delay={0.1} className="prose">
+        <div className="wrap media-split">
+          <div className="media-split__media">
+            <Figure
+              src={img(photos.serviceFloor, 1000)}
+              alt={alts.serviceFloor}
+              ratio="4 / 3"
+              scrim="none"
+            />
+          </div>
+          <Reveal className="prose">
+            <h2 className="shead__title" style={{ marginBottom: 20 }}>
+              Working here
+            </h2>
             <p>
               Counter staff train on the catalogue for six months before they
               quote unsupervised, and everyone — including management — spends

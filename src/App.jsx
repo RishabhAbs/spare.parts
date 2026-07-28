@@ -4,6 +4,7 @@ import { AnimatePresence, motion, useReducedMotion } from 'framer-motion'
 
 import Nav from './components/Nav.jsx'
 import Footer from './components/Footer.jsx'
+import FloatingContact from './components/FloatingContact.jsx'
 
 import Home from './pages/Home.jsx'
 import About from './pages/About.jsx'
@@ -106,6 +107,7 @@ export default function App() {
           />
         </Routes>
       </AnimatePresence>
+      <FloatingContact />
       <Footer />
     </>
   )

@@ -3,6 +3,7 @@ import Reveal from '../components/Reveal.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import { partners } from '../data/site.js'
+import { img, photos } from '../data/images.js'
 
 export default function Partners() {
   return (
@@ -11,6 +12,7 @@ export default function Partners() {
         code="04 / OUR PARTNERS"
         title="Eight manufacturers we answer for."
         sub="We hold authorised stock for each of these brands. That means audited inventory, genuine packaging, and a warranty we process ourselves rather than sending you upstream."
+        image={img(photos.bearingMacro, 1800)}
       />
 
       <section className="section">
@@ -61,6 +63,27 @@ export default function Partners() {
                 ))}
               </tbody>
             </table>
+          </Reveal>
+        </div>
+      </section>
+
+      <section className="band">
+        <div className="band__bg">
+          <img src={img(photos.engineChrome, 1800)} alt="" aria-hidden="true" loading="lazy" />
+        </div>
+        <div className="wrap band__inner">
+          <Reveal>
+            <p className="u-mono" style={{ color: 'var(--cadmium)', marginBottom: 18 }}>
+              Genuine stock
+            </p>
+            <h2 className="band__title">
+              Sealed boxes, batch numbers, and a claim we handle ourselves.
+            </h2>
+            <p className="band__sub">
+              Counterfeit parts are the single biggest risk in this trade. Every
+              box we ship arrives in manufacturer packaging with its batch
+              recorded against your invoice line.
+            </p>
           </Reveal>
         </div>
       </section>

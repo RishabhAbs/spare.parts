@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom'
 import Reveal from './Reveal.jsx'
-import { company } from '../data/site.js'
+import { company, telHref } from '../data/site.js'
 
 export default function CtaBand({
   title = 'Send us the chassis number. We will send back the part.',
@@ -20,9 +20,15 @@ export default function CtaBand({
               →
             </span>
           </Link>
-          <a className="btn btn--ghost" href={`tel:${company.phone.replace(/\s/g, '')}`}>
-            {company.phone}
-          </a>
+          {telHref(company.phone) ? (
+            <a className="btn btn--ghost" href={telHref(company.phone)}>
+              {company.phone}
+            </a>
+          ) : (
+            <Link className="btn btn--ghost" to="/contact">
+              Branch numbers
+            </Link>
+          )}
         </Reveal>
       </div>
     </section>

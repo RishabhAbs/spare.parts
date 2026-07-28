@@ -1,8 +1,10 @@
 import PageHeader from '../components/PageHeader.jsx'
+import Figure from '../components/Figure.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import { company } from '../data/site.js'
+import { alts, img, photos } from '../data/images.js'
 
 const principles = [
   {
@@ -29,6 +31,7 @@ export default function About() {
         code="02 / ABOUT US"
         title="A parts counter that grew a warehouse behind it."
         sub={`${company.legal} supplies commercial vehicle and industrial spare parts to workshops, fleets and factories across northern and central India.`}
+        image={img(photos.serviceFloor, 1800)}
       />
 
       <section className="section">
@@ -75,6 +78,31 @@ export default function About() {
               ))}
             </div>
           </Reveal>
+        </div>
+      </section>
+
+      <section className="section section--tight">
+        <div className="wrap media-stack">
+          <Figure
+            src={img(photos.warehouseAisle, 1600)}
+            alt={alts.warehouseAisle}
+            ratio="21 / 9"
+            scrim="soft"
+          >
+            <p className="u-mono">Ludhiana · main warehouse · 22,000 sq ft</p>
+          </Figure>
+          <Figure
+            src={img(photos.wrenchWall, 900)}
+            alt={alts.wrenchWall}
+            ratio="4 / 3"
+            scrim="none"
+          />
+          <Figure
+            src={img(photos.handsEngine, 900)}
+            alt={alts.handsEngine}
+            ratio="4 / 3"
+            scrim="none"
+          />
         </div>
       </section>
 

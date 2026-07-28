@@ -4,7 +4,8 @@ import { AnimatePresence, motion } from 'framer-motion'
 import PageHeader from '../components/PageHeader.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SectionHead from '../components/SectionHead.jsx'
-import { branches, company } from '../data/site.js'
+import { branches, company, telHref } from '../data/site.js'
+import { img, photos } from '../data/images.js'
 
 
 const ENQUIRY_TYPES = [
@@ -31,6 +32,7 @@ export default function Contact() {
         code="06 / CONTACT US"
         title="The counter is open six days a week."
         sub={`${company.hours}. Call for anything urgent — a vehicle on a ramp does not wait for email.`}
+        image={img(photos.nightHighway, 1800)}
       />
 
       <section className="section">
@@ -61,13 +63,9 @@ export default function Contact() {
                   </h3>
                   <p className="u-dim">
                     This site is a static build with no form endpoint connected
-                    yet, so nothing left your browser. Call{' '}
-                    <a href={`tel:${company.phone.replace(/\s/g, '')}`}>
-                      {company.phone}
-                    </a>{' '}
-                    or write to{' '}
-                    <a href={`mailto:${company.email}`}>{company.email}</a> in the
-                    meantime.
+                    yet, so nothing left your browser. Connect the form to your
+                    mail service, or reach the counter on the branch numbers
+                    listed below.
                   </p>
                   <div className="btn-row" style={{ marginTop: 20 }}>
                     <button
@@ -165,12 +163,11 @@ export default function Contact() {
                         →
                       </span>
                     </button>
-                    <a
-                      className="btn btn--ghost"
-                      href={`tel:${company.phone.replace(/\s/g, '')}`}
-                    >
-                      Call instead
-                    </a>
+                    {telHref(company.phone) && (
+                      <a className="btn btn--ghost" href={telHref(company.phone)}>
+                        Call instead
+                      </a>
+                    )}
                   </div>
                 </motion.form>
               )}
@@ -185,7 +182,7 @@ export default function Contact() {
                 ['Email', company.email],
                 ['Hours', company.hours],
                 ['Order cut-off', '16:00 for same-evening dispatch'],
-                ['GSTIN', '03AABCH1234F1Z7'],
+                ['GSTIN', company.gstin],
               ].map(([k, v]) => (
                 <div className="spec__row" key={k}>
                   <span className="spec__key">{k}</span>
@@ -217,9 +214,8 @@ export default function Contact() {
             <Reveal delay={0.1} className="prose">
               <p>
                 If you only have the vehicle in front of you, that is still
-                enough. Send a photo on WhatsApp to {company.whatsapp} and the
-                counter will identify it from there — it is what we do fifty
-                times a day.
+                enough. Send a photo on WhatsApp and the counter will identify
+                it from there — it is what we do fifty times a day.
               </p>
             </Reveal>
           </div>
@@ -239,9 +235,13 @@ export default function Contact() {
                   </p>
                   <p className="branch__addr">{b.address}</p>
                 </div>
-                <a className="branch__tel" href={`tel:${b.tel.replace(/\s/g, '')}`}>
-                  {b.tel}
-                </a>
+                {telHref(b.tel) ? (
+                  <a className="branch__tel" href={telHref(b.tel)}>
+                    {b.tel}
+                  </a>
+                ) : (
+                  <span className="branch__tel">{b.tel}</span>
+                )}
               </Reveal>
             ))}
           </div>

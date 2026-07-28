@@ -2,10 +2,19 @@ import { useRef } from 'react'
 import { motion, useReducedMotion, useScroll, useSpring } from 'framer-motion'
 
 import PageHeader from '../components/PageHeader.jsx'
+import Figure from '../components/Figure.jsx'
 import Reveal from '../components/Reveal.jsx'
 import SectionHead from '../components/SectionHead.jsx'
 import CtaBand from '../components/CtaBand.jsx'
 import { journey } from '../data/site.js'
+import { alts, img, photos } from '../data/images.js'
+
+/** Only the milestones where a photograph adds something carry one. */
+const MILESTONE_PHOTOS = {
+  1978: [photos.wrenchWall, alts.wrenchWall],
+  2003: [photos.warehouseAisle, alts.warehouseAisle],
+  2018: [photos.fleetAerial, alts.fleetAerial],
+}
 
 export default function Journey() {
   const railRef = useRef(null)
@@ -27,6 +36,7 @@ export default function Journey() {
         code="03 / OUR JOURNEY"
         title="Four shelves to six warehouses."
         sub="Nothing here happened quickly. Each step was paid for by the one before it — which is why the dates matter more than the story."
+        image={img(photos.wheelsRack, 1800)}
       />
 
       <section className="section">
@@ -52,6 +62,15 @@ export default function Journey() {
                 <h3 className="tl-item__title">{item.title}</h3>
                 <p className="tl-item__body">{item.body}</p>
                 <span className="tl-item__tag">{item.tag}</span>
+                {MILESTONE_PHOTOS[item.year] && (
+                  <Figure
+                    className="timeline__figure"
+                    src={img(MILESTONE_PHOTOS[item.year][0], 900)}
+                    alt={MILESTONE_PHOTOS[item.year][1]}
+                    ratio="16 / 9"
+                    scrim="none"
+                  />
+                )}
               </Reveal>
             ))}
           </div>
